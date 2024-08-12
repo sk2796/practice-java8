@@ -9,6 +9,7 @@ public class LinkedList {
         Node<Integer> head = input();
 //        increment(head);
         print(head);
+        //
 
     }
 
