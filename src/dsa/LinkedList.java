@@ -38,10 +38,10 @@ public class LinkedList {
         }
     }
 
-    private static void print(Node<Integer> head) {
+    public static void print(Node<Integer> head) {
         System.out.println("PRINTING");
         while(head !=null) {
-            System.out.println(head.data +" "+head.next);
+            System.out.println(head.data +" -> "+head.next);
             head = head.next;
         }
     }

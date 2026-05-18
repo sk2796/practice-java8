@@ -20,5 +20,23 @@ public class KMostFrequentWords {
                 .toArray(String[]::new);
 
         System.out.println(Arrays.toString(result));
+
+
+//        Return top-k frequent words sorted by frequency and lexicographical order.
+        String str = "i like java and i like python and i like c";
+        Map<String, Long> collect1 = Arrays.stream(str.split(" "))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        String[] result1 = collect1.entrySet().stream()
+                .sorted((e1, e2) -> {
+                    int freqCompare = e2.getValue().compareTo(e1.getValue());
+                    if (freqCompare == 0) {
+                        return e1.getKey().compareTo(e2.getKey());
+                    }
+                    return freqCompare;
+                })
+                .limit(9)
+                .map(Map.Entry::getKey)
+                .toArray(String[]::new);
+        System.out.println(Arrays.toString(result1));
     }
 }

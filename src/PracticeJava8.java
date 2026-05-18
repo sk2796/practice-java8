@@ -11,7 +11,7 @@ public class PracticeJava8 {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
         int[] arr = {12,34,67,22,4,5,22,7,77,100};
         int[] arr1 = {1, 2,74, 3, 4, 5};
-        List<Integer> num = Arrays.asList(12,34,65,22,4,22,5,7,77,67);
+        List<Integer> num = Arrays.asList(12,34,65,22,4,22,5,7,4,77,67);
         List<Integer> collect4 = Arrays.stream(arr).boxed().toList();
         String strnum = "2784979";
         int target = 27;
@@ -143,9 +143,10 @@ public class PracticeJava8 {
         LocalDateTime today = LocalDateTime.now();
         System.out.println("Today's date  "+today);
         LocalDate dob = LocalDate.of(1995, 07, 02);
+        LocalDateTime dob1 = LocalDateTime.of(1995, 07, 02, 5, 05);
+        System.out.println("Date of birth  "+dob1);
         long between = ChronoUnit.YEARS.between(dob, today);
         System.out.println( "Age of person in years  "+between);
-        System.out.println("Age of person in years using period  "+ChronoUnit.YEARS.between(dob, today));
 
         //last element of an array
         String s = stringList.stream().skip(stringList.size() - 1).findFirst().get();
@@ -155,9 +156,21 @@ public class PracticeJava8 {
         int[] array = IntStream.rangeClosed(1, arr.length).map(i -> arr[arr.length - i]).toArray();
         System.out.println(" 25  "+Arrays.toString(array));
 
-        //Pallindrome //Not working
-        String st = "aba";
-        boolean b = IntStream.rangeClosed(1, st.length() / 2).allMatch(i -> st.charAt(1) == st.charAt(st.length() - 1));
+        //String list with fruits name
+        List<String> fruits = Arrays.asList("strawberry", "watermelon", "apple", "banana", "grape", "orange", "kiwi");
+        fruits.stream().sorted((a, b) -> {
+            int lenCompare = Integer.compare(a.length(), b.length());
+            if (lenCompare == 0) {
+                return a.compareTo(b);
+            }
+            return lenCompare;
+        }).toList()
+                .forEach(System.out::println);
+
+        //Is Pallindrome using streams//Not working
+        String st = "abbya";
+        boolean b = IntStream.range(0, st.length() / 2)
+                .allMatch(i -> st.charAt(i) == st.charAt(st.length() - 1 - i));
         System.out.println("Pallindrome");
         System.out.println(b);
 
